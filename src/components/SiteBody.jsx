@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
 import {
+    Divider,
     Grid,
     List,
     ListItem,
@@ -12,53 +15,72 @@ const styles = theme =>({
     root: {
         flexGrow: 1,
         margin: '30px auto',
-        padding: '0 20px',
+        padding: theme.spacing.unit * 3,
         [theme.breakpoints.up("lg")]: {
             width: 1170
         }
     },
     amountMeta: {
         textAlign: 'right',
+    },
+    toolbar: {
+        ...theme.mixins.toolbar,
     }
 });
 
-const SiteBody = (props) => {
-    const { classes } = props;
-    return(
-        <div className={classes.root}>
-            <Grid
-                justify="center"
-                container
-                spacing={8}
-            >
+class SiteBody extends Component{
+    
+    render(){
+        const { classes } = this.props;
+
+        return (
+            <main className={classes.root}>
+                <div className={classes.toolbar}/>
                 <Grid
-                    alignItems="center"
-                    container
-                    className={classes.container}
                     justify="center"
+                    container
+                    spacing={8}
                 >
-                    <Grid item xs={12}>
-                        <List>
-                            <ListItem
-                                button
-                            >
-                                <ListItemText
-                                    primary="Title"
-                                    secondary="Category | Account (e.g Wallet,Paypal)"
-                                />
-                                <ListItemText
-                                    className={classes.amountMeta}
-                                    primary="Amount"
-                                    secondary="Paid or Received"
-                                />
-                         
-                            </ListItem>
-                        </List>
+                    <Grid
+                        alignItems="center"
+                        container
+                        className={classes.container}
+                        justify="center"
+                    >
+                        <Grid item xs={12}>
+                            <List>
+                                <ListItem button>
+                                    <ListItemText
+                                        primary="Title"
+                                        secondary="Category | Account (e.g Wallet,Paypal)"
+                                    />
+                                    <ListItemText
+                                        className={classes.amountMeta}
+                                        primary="Amount"
+                                        secondary="Paid or Received"
+                                    />
+                                </ListItem>
+                                <Divider />
+                            </List>
+                        </Grid>
                     </Grid>
                 </Grid>
-            </Grid>
-        </div>
-    );
+            </main>
+        );
+    }
 }
 
-export default withStyles(styles)(SiteBody);
+function mapStateToProps(state, ownProps){
+    return {
+        isDrawerOpen: state.siteDrawer.open,
+        classes: ownProps.classes
+    }
+}
+
+export default compose(
+    withTheme(),
+    withStyles(styles, { withTheme: true }),
+    connect(
+        mapStateToProps
+    )
+)(SiteBody);
