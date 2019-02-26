@@ -1,6 +1,5 @@
-export const drawerToggle = (isOpen) =>{
+export const drawerToggle = () =>{
     return {
         type: "TOGGLE_DRAWER",
-        isOpen
     }
 }

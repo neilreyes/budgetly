@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // Components
+import SiteDrawer from './SiteDrawer';
 import SiteHeader from './SiteHeader';
 import SiteBody from './SiteBody';
 import SiteFooter from './SiteFooter';
@@ -21,7 +22,9 @@ class App extends Component {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
+         
           <SiteHeader />
+          <SiteDrawer />
           <SiteBody />
           <SiteFooter />
         </div>
