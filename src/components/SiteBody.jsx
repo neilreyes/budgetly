@@ -3,11 +3,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Transactions from './Transactions';
 import {
-    Divider,
     Grid,
-    List,
-    ListItem,
-    ListItemText,
     withTheme,
     withStyles,
 } from '@material-ui/core';

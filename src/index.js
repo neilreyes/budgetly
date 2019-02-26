@@ -5,7 +5,6 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 const store = createStore(
     rootReducer,
@@ -14,12 +13,10 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <React.Fragment>
-                <CssBaseline />
-                <App />
-            </React.Fragment>
-        </BrowserRouter>
+        <React.Fragment>
+            <CssBaseline />
+            <App />
+        </React.Fragment>
     </Provider>,
     document.getElementById('root')
 );

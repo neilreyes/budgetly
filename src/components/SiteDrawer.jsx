@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { classNames } from 'classnames';
 import {
     Drawer,
     Divider,
@@ -9,7 +8,6 @@ import {
     List,
     ListItem,
     ListItemIcon,
-    Toolbar,
     withStyles,
     withTheme, 
     ListItemText} from '@material-ui/core';
