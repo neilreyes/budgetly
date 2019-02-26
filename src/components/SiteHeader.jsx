@@ -40,7 +40,7 @@ class SiteHeader extends Component {
                 className={ isDrawerOpen ? classes.appBarShift : classes.appBar }
                 position="fixed">
                 <Toolbar
-                    disableGutters="true">
+                    disableGutters={true}>
                     <IconButton
                         className={classes.drawerButton}
                         onClick={()=>toggleDrawer()}>

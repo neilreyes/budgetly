@@ -83,8 +83,8 @@ class SiteDrawer extends Component{
                         onClick={ ()=>{this.props.toggleDrawer();} }>
                         { this.props.open ? <ChevronLeft/> : <ChevronRight/> }
                     </IconButton>
-                    <Divider variant="fullWidth" light="false"/>
-                    <List disablePadding="true" component="nav" className={classes.navList}>
+                    <Divider variant="fullWidth" light={false}/>
+                    <List disablePadding={true} component="nav" className={classes.navList}>
                         {listItems.map((text,index)=>(
                             <ListItem
                                 button
