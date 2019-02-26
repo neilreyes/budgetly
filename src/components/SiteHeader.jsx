@@ -18,12 +18,14 @@ const styles = theme => ({
         justifyContent: 'space-between',
     },
     appBar: {
-        marginLeft: 66,
         zIndex: theme.zIndex.drawer + 1,
     },
     appBarShift: {
         marginLeft: 240,
         width: `calc(100% - ${drawerWidth}px)`,
+    },
+    drawerButton: {
+        margin: "0 4px",
     }
 });
 
@@ -36,9 +38,12 @@ class SiteHeader extends Component {
         return (
             <AppBar
                 className={ isDrawerOpen ? classes.appBarShift : classes.appBar }
-                position="static">
-                <Toolbar>
-                    <IconButton onClick={()=>toggleDrawer()}>
+                position="fixed">
+                <Toolbar
+                    disableGutters="true">
+                    <IconButton
+                        className={classes.drawerButton}
+                        onClick={()=>toggleDrawer()}>
                         { isDrawerOpen ? <Close /> : <Menu /> }
                     </IconButton>
                     <Typography variant="h6" color="inherit">

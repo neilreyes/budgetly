@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import SiteDrawer from './SiteDrawer';
 import SiteHeader from './SiteHeader';
 import SiteBody from './SiteBody';
-import SiteFooter from './SiteFooter';
+//import SiteFooter from './SiteFooter';
 // Material
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
@@ -29,7 +29,7 @@ class App extends Component {
           <SiteHeader />
           <SiteDrawer />
           <SiteBody />
-          <SiteFooter />
+          {/* <SiteFooter /> */}
         </div>
       </MuiThemeProvider>
     );
