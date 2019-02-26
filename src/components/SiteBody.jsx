@@ -29,7 +29,7 @@ const SiteBody = (props) => {
             <Grid
                 justify="center"
                 container
-                spacing={6}
+                spacing={8}
             >
                 <Grid
                     alignItems="center"
