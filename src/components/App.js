@@ -8,9 +8,12 @@ import SiteFooter from './SiteFooter';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
 const theme = createMuiTheme({
- palette:{
-   primary: { main: '#2ca4ff' },
- }
+  palette:{
+    primary: { main: '#2ca4ff' },
+  },
+  typography: {
+    useNextVariants: true,
+  }
 });
 
 class App extends Component {
