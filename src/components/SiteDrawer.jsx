@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { classNames } from 'classnames';
@@ -54,19 +54,18 @@ const styles = theme => (
     }
 )
 
-class SiteDrawer extends React.Component{
-    
-    
+class SiteDrawer extends Component{
+
     render(){
         const { classes } = this.props;
-        const listItems = ["TrendingUp","TrendingDown","CreditCard"];
+        const listItems = ["Add Income","Add Expense","Credit Expense"];
         const getDrawerIcon = text => {
             switch (text) {
-                case "TrendingUp":
+                case "Add Income":
                     return <TrendingUp />
-                case "TrendingDown":
+                case "Add Expense":
                     return <TrendingDown />
-                case "CreditCard":
+                case "Credit Expense":
                     return <CreditCard />
                 default:
                     break;
@@ -75,9 +74,7 @@ class SiteDrawer extends React.Component{
         return(
             <Drawer
                 className={ this.props.open ? classes.drawerOpen : classes.drawerClose }
-                classes={{
-                    paper: this.props.open ? classes.drawerOpen : classes.drawerClose
-                }}
+                classes={{ paper: this.props.open ? classes.drawerOpen : classes.drawerClose }}
                 open={this.props.open}
                 variant="permanent">
                 <div className={classes.toolBar}>

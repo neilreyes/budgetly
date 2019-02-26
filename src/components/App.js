@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import SiteDrawer from './SiteDrawer';
 import SiteHeader from './SiteHeader';
 import SiteBody from './SiteBody';
-// import SiteFooter from './SiteFooter';
 // Material
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
@@ -17,19 +16,13 @@ const theme = createMuiTheme({
 });
 
 class App extends Component {
-  state = {
-    isDialogBoxOpen: false,
-  }
-
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
-         
           <SiteHeader />
           <SiteDrawer />
           <SiteBody />
-          {/* <SiteFooter /> */}
         </div>
       </MuiThemeProvider>
     );
