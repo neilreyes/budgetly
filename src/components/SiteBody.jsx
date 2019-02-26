@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import Transactions from './Transactions';
 import {
     Divider,
     Grid,
@@ -48,20 +49,7 @@ class SiteBody extends Component{
                         justify="center"
                     >
                         <Grid item xs={12}>
-                            <List>
-                                <ListItem button>
-                                    <ListItemText
-                                        primary="Title"
-                                        secondary="Category | Account (e.g Wallet,Paypal)"
-                                    />
-                                    <ListItemText
-                                        className={classes.amountMeta}
-                                        primary="Amount"
-                                        secondary="Paid or Received"
-                                    />
-                                </ListItem>
-                                <Divider />
-                            </List>
+                            <Transactions />
                         </Grid>
                     </Grid>
                 </Grid>
