@@ -1,17 +1,16 @@
 import React from 'react';
+import { compose } from 'redux';
 import {
     Drawer,
     IconButton,
-    withTheme
-} from '@material-ui/core';
+    withTheme } from '@material-ui/core';
 import { connect } from 'react-redux';
 import {
     CreditCard,
     TrendingDown,
     TrendingUp,
     ChevronLeft,
-    ChevronRight
-} from '@material-ui/icons';
+    ChevronRight } from '@material-ui/icons';
 
 class SiteDrawer extends React.Component{
     render(){
@@ -41,7 +40,10 @@ const mapDispatchToProps = dispatch =>{
     }
 }
 
-export default connect(
-    mapStateToProps, 
-    mapDispatchToProps,
-    )(SiteDrawer);
+export default compose(
+    connect(
+        mapStateToProps, 
+        mapDispatchToProps,
+    ),
+    withTheme()
+)(SiteDrawer);
