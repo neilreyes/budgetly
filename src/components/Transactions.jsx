@@ -36,7 +36,6 @@ const styles = themes => (
 class Transactions extends Component{
     render(){
         const { classes, transactions } = this.props;
-
         return(
             <List>
                 {transactions.map((value, index)=>{

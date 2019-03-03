@@ -16,7 +16,9 @@ import {
     TrendingDown,
     TrendingUp,
     ChevronLeft,
-    ChevronRight } from '@material-ui/icons';
+    ChevronRight,
+    List as ListIcon } from '@material-ui/icons';
+import { NavLink } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -56,19 +58,7 @@ class SiteDrawer extends Component{
 
     render(){
         const { classes } = this.props;
-        const listItems = ["Add Income","Add Expense","Credit Expense"];
-        const getDrawerIcon = text => {
-            switch (text) {
-                case "Add Income":
-                    return <TrendingUp />
-                case "Add Expense":
-                    return <TrendingDown />
-                case "Credit Expense":
-                    return <CreditCard />
-                default:
-                    break;
-            }  
-        }
+
         return(
             <Drawer
                 className={ this.props.open ? classes.drawerOpen : classes.drawerClose }
@@ -83,23 +73,44 @@ class SiteDrawer extends Component{
                     </IconButton>
                     <Divider variant="fullWidth" light={false}/>
                     <List disablePadding={true} component="nav" className={classes.navList}>
-                        {listItems.map((text,index)=>(
-                            <ListItem
-                                button
-                                key={index}>
+                        <ListItem>
+                            <ListItemIcon>
+                                <NavLink to="/">
+                                    <ListIcon />
+                                </NavLink>
+                                <ListItemText primary="Transactions" />
+                            </ListItemIcon>
+                        </ListItem>
+
+                        <ListItem>
+                            <NavLink to="/add-income">
                                 <ListItemIcon>
-                                    {getDrawerIcon(text)}
+                                    <TrendingUp />
                                 </ListItemIcon>
-                                <ListItemText primary={text} />     
-                            </ListItem>
-                        ))}
+                            </NavLink>
+                            <ListItemText primary="Add Income" />
+                        </ListItem>
+                        
+                        <ListItem>
+                            <ListItemIcon>
+                                <TrendingDown />
+                            </ListItemIcon>
+                            <ListItemText primary="Add Expense" />
+                        </ListItem>
+                        <ListItem>
+                            <ListItemIcon>
+                                <CreditCard />
+                            </ListItemIcon>
+                            <ListItemText primary="Credit Expense" />
+                        </ListItem>
                     </List>
-                    <Divider />
+                    <Divider variant="fullWidth" light={false}/>
                 </div>
             </Drawer>
         )
     };
 }
+
 
 const mapStateToProps = (state, ownProps) => {
     return {

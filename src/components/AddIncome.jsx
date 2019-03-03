@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 
-class AddExpensepage extends Component{
+class AddIncome extends Component{
     render(){
+        console.log(this.props);
+
         return(
             <div>
-                Add expense page
+                Add income 
             </div>
         );
     }
 }
 
-export default AddExpensepage;
+export default AddIncome;

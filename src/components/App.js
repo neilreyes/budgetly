@@ -18,13 +18,15 @@ const theme = createMuiTheme({
 class App extends Component {
   render() {
     return (
-      <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <SiteHeader />
-          <SiteDrawer />
-          <SiteBody />
+        <div>
+          <MuiThemeProvider theme={theme}>
+            <div className="App">
+              <SiteHeader />
+              <SiteDrawer />
+              <SiteBody />
+            </div>
+          </MuiThemeProvider>
         </div>
-      </MuiThemeProvider>
     );
   }
 }

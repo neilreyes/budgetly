@@ -10,6 +10,7 @@ import {
     withStyles, 
     withTheme } from '@material-ui/core';
 import { Menu, Close } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 

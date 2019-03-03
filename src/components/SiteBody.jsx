@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import Transactions from './Transactions';
+import AddIncome from './AddIncome';
+import { Switch, Route, withRouter } from 'react-router-dom';
 import {
     Grid,
     withTheme,
@@ -45,7 +47,10 @@ class SiteBody extends Component{
                         justify="center"
                     >
                         <Grid item xs={12}>
-                            <Transactions />
+                            <Switch>
+                                <Route path="/" component={Transactions} exact/>
+                                <Route path="/add-income" component={AddIncome} />
+                            </Switch>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -62,9 +67,10 @@ function mapStateToProps(state, ownProps){
 }
 
 export default compose(
+    withRouter,
     withTheme(),
     withStyles(styles, { withTheme: true }),
-    connect(
-        mapStateToProps
-    )
+    connect(mapStateToProps)
 )(SiteBody);
+
+
