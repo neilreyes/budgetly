@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import Transactions from './Transactions';
-import AddIncome from './AddIncome';
+import Transactions from './transactions/';
+import AddIncome from '../components/pages/AddIncome';
+import AddExpense from '../components/pages/AddExpense';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import {
     Grid,
@@ -50,6 +51,7 @@ class SiteBody extends Component{
                             <Switch>
                                 <Route path="/" component={Transactions} exact/>
                                 <Route path="/add-income" component={AddIncome} />
+                                <Route path="/add-expense" component={AddExpense} />
                             </Switch>
                         </Grid>
                     </Grid>
@@ -61,7 +63,7 @@ class SiteBody extends Component{
 
 function mapStateToProps(state, ownProps){
     return {
-        isDrawerOpen: state.siteDrawer.open,
+        siteDrawerIsActive: state.ui.siteDrawer.isActive,
         classes: ownProps.classes
     }
 }

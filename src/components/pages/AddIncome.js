@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import AddIncomeForm from '../../containers/transactions/AddIncomeForm';
 
 class AddIncome extends Component{
     render(){
@@ -6,7 +7,7 @@ class AddIncome extends Component{
 
         return(
             <div>
-                Add income 
+                <AddIncomeForm />
             </div>
         );
     }

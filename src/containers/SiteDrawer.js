@@ -18,7 +18,7 @@ import {
     ChevronLeft,
     ChevronRight,
     List as ListIcon } from '@material-ui/icons';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -61,43 +61,39 @@ class SiteDrawer extends Component{
 
         return(
             <Drawer
-                className={ this.props.open ? classes.drawerOpen : classes.drawerClose }
-                classes={{ paper: this.props.open ? classes.drawerOpen : classes.drawerClose }}
-                open={this.props.open}
+                className={ this.props.siteDrawerIsActive ? classes.drawerOpen : classes.drawerClose }
+                classes={{ paper: this.props.siteDrawerIsActive ? classes.drawerOpen : classes.drawerClose }}
+                open={this.props.siteDrawerIsActive}
                 variant="permanent">
                 <div className={classes.toolBar}>
                     <IconButton
                         className={classes.drawerCloseButton}
-                        onClick={ ()=>{this.props.toggleDrawer();} }>
-                        { this.props.open ? <ChevronLeft/> : <ChevronRight/> }
+                        onClick={() => { this.props.toggleSiteDrawer();} }>
+                        { this.props.siteDrawerIsActive ? <ChevronLeft/> : <ChevronRight/> }
                     </IconButton>
                     <Divider variant="fullWidth" light={false}/>
                     <List disablePadding={true} component="nav" className={classes.navList}>
-                        <ListItem>
+                        <ListItem button component={Link} to="/">
                             <ListItemIcon>
-                                <NavLink to="/">
-                                    <ListIcon />
-                                </NavLink>
+                                <ListIcon />
                                 <ListItemText primary="Transactions" />
                             </ListItemIcon>
                         </ListItem>
 
-                        <ListItem>
-                            <NavLink to="/add-income">
-                                <ListItemIcon>
-                                    <TrendingUp />
-                                </ListItemIcon>
-                            </NavLink>
+                        <ListItem button component={Link} to="/add-income">
+                            <ListItemIcon>
+                                <TrendingUp />
+                            </ListItemIcon>
                             <ListItemText primary="Add Income" />
                         </ListItem>
                         
-                        <ListItem>
+                        <ListItem button component={Link} to="/add-expense">
                             <ListItemIcon>
                                 <TrendingDown />
                             </ListItemIcon>
                             <ListItemText primary="Add Expense" />
                         </ListItem>
-                        <ListItem>
+                        <ListItem button to="/credit-expense">
                             <ListItemIcon>
                                 <CreditCard />
                             </ListItemIcon>
@@ -114,17 +110,16 @@ class SiteDrawer extends Component{
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        open: state.siteDrawer.open,
+        siteDrawerIsActive: state.ui.siteDrawer.isActive,
         classes: ownProps.classes,
     };
 }
 
 const mapDispatchToProps = dispatch =>{
     return {
-        toggleDrawer: () => dispatch({type: "TOGGLE_DRAWER"})
+        toggleSiteDrawer: () => dispatch({ type: "UI_TOGGLE_DRAWER"}),
     }
 }
-
 export default compose(
     connect(
         mapStateToProps, 

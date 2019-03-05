@@ -10,7 +10,6 @@ import {
     withStyles, 
     withTheme } from '@material-ui/core';
 import { Menu, Close } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -34,18 +33,18 @@ class SiteHeader extends Component {
 
 
     render(){
-        const { classes, isDrawerOpen, toggleDrawer } = this.props;
+        const { classes, siteDrawerIsActive, toggleSiteDrawer } = this.props;
 
         return (
             <AppBar
-                className={ isDrawerOpen ? classes.appBarShift : classes.appBar }
+                className={ siteDrawerIsActive ? classes.appBarShift : classes.appBar }
                 position="fixed">
                 <Toolbar
                     disableGutters={true}>
                     <IconButton
                         className={classes.drawerButton}
-                        onClick={()=>toggleDrawer()}>
-                        { isDrawerOpen ? <Close /> : <Menu /> }
+                        onClick={() => toggleSiteDrawer()}>
+                        { siteDrawerIsActive ? <Close /> : <Menu /> }
                     </IconButton>
                     <Typography variant="h6" color="inherit">
                         Budgetly
@@ -61,14 +60,14 @@ class SiteHeader extends Component {
 
 const mapStateToProps = (state, ownProps) =>{
     return {
-        isDrawerOpen : state.siteDrawer.open,
+        siteDrawerIsActive : state.ui.siteDrawer.isActive,
         classes: ownProps.classes,
     }
 }
 
 const mapDispatchToProps = dispatch =>{
     return {
-        toggleDrawer : () => dispatch({type: "TOGGLE_DRAWER"}),
+        toggleSiteDrawer: () => dispatch({ type: "UI_TOGGLE_DRAWER"}),
     }
 }
 

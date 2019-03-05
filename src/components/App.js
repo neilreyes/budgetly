@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 // Components
-import SiteDrawer from './SiteDrawer';
-import SiteHeader from './SiteHeader';
-import SiteBody from './SiteBody';
+import SiteDrawer from '../containers/SiteDrawer';
+import SiteHeader from '../containers/SiteHeader';
+import SiteBody from '../containers/SiteBody';
 // Material
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
 
