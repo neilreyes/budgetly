@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
     Button,
     FormControl,
@@ -7,56 +7,92 @@ import {
     InputLabel,
     TextField,
 } from '@material-ui/core';
+import { connect } from 'react-redux';
+import { addNewTransaction } from '../../actions/transaction_action';
 
-const AddExpenseForm = (props) => {
-    return(
-        <form >
-            <h2>Expense</h2>
-            <FormControl fullWidth>
-                <InputLabel htmlFor="input-adornment">Title</InputLabel>
-                <Input
-                    name="title"
-                    id=""
-                />
-            </FormControl>
+class AddExpenseForm extends Component {
+    constructor(props){
+        super(props);
 
-            <FormControl fullWidth>
-                <InputLabel htmlFor="input-adornment">Particulars</InputLabel>
-                <TextField
-                    name="particulars"
-                    margin="normal"
-                    multiline
-                />
-            </FormControl>
+        this.state = {
+            amount: "",
+            category: "",
+            date: new Date(),
+            description: "",
+            title: "",
+            expense: true,
+            source: "wallet",
+            status: "paid"
+        }
 
-            <FormControl fullWidth>
-                <InputLabel htmlFor="input-adornment">Amount</InputLabel>
-                <Input
-                    name="amount"
-                    id=""
-                    startAdornment={<InputAdornment position="start">P</InputAdornment>}
-                />
-            </FormControl>
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    }
 
-            <FormControl fullWidth>
-                <InputLabel htmlFor="input-adornment">Category</InputLabel>
-                <Input
-                    id=""
-                    name="category"
-                />
-            </FormControl>
+    handleOnChange(event){
+        const { name, value } = event.target;
+        this.setState({
+            [name]: value,
+        });
+    }
 
-            <FormControl fullWidth>
-                <InputLabel htmlFor="input-adornment">Date</InputLabel>
-                <Input
-                    id=""
-                />
-            </FormControl>
-            
-            <Button>Submit</Button>
+    handleOnSubmit(event){
+        this.props.addNewTransaction(this.state);
+        event.preventDefault();
+    }
 
-        </form>
-    );
+    render(){
+        console.log(this.props)
+        const { amount, title, category, description } = this.state;
+        return (
+            <form onSubmit={this.handleOnSubmit}>
+                <h2>Expense</h2>
+                <FormControl fullWidth required>
+                    <InputLabel> Amount </InputLabel>
+                    <Input
+                        name="amount"
+                        value={amount}
+                        id=""
+                        startAdornment={
+                            <InputAdornment position="start">P</InputAdornment>
+                        }
+                        onChange={this.handleOnChange}
+                    />
+                </FormControl> 
+                <FormControl fullWidth required>
+                    <InputLabel>Title</InputLabel> 
+                    <Input
+                        name="title"
+                        value={title}
+                        onChange={this.handleOnChange}
+                    />
+                </FormControl>
+
+                <FormControl fullWidth required>
+                    <InputLabel htmlFor="input-adornment">Category</InputLabel>
+                    <Input
+                        name={category}
+                        value={category}
+                        onChange={this.handleOnChange}
+                    />
+                </FormControl>
+                
+                <FormControl fullWidth>
+                    <InputLabel htmlFor="input-adornment">Description</InputLabel>
+                    <TextField
+                        multiline
+                        rows = "4"
+                        name="description"
+                        value={description}
+                        margin="normal"
+                        onChange={this.handleOnChange}
+                    />
+                </FormControl>                
+
+                <Button onClick={this.handleOnSubmit}>Submit</Button>
+            </form>
+        )
+    }
 }
 
-export default AddExpenseForm;
+export default connect(null, {addNewTransaction})(AddExpenseForm);

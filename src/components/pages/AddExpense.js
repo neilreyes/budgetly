@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
+import AddExpenseForm from '../../containers/transactions/AddExpenseForm';
 
 class AddExpense extends Component{
     render(){
-        console.log(this.props);
-
-        return(
-            <div>
-                Add expense page
-            </div>
-        );
+        return <AddExpenseForm />;
     }
 }
 

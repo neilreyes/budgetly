@@ -2,19 +2,10 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import {
-    Divider,
-    IconButton,
     List,
-    ListItem,
-    ListItemText,
-    ListItemSecondaryAction,
-    Typography,
     withTheme,
-    withStyles,
-} from '@material-ui/core';
-import {
-    Edit
-} from '@material-ui/icons';
+    withStyles } from '@material-ui/core';
+import { Transaction } from '../../components/transactions/Transaction';
 
 const styles = themes => (
     {
@@ -39,26 +30,7 @@ class Transactions extends Component{
         return(
             <List>
                 {transactions.map((value, index)=>{
-                    return(
-                        <div key={index}>
-                            <ListItem button>
-                                <ListItemText
-                                    primary={value.title}
-                                    secondary={`${value.category} | ${value.account}`}
-                                />
-                                <div className={classes.amountMeta}>
-                                    <Typography className={(value.transactionType===1)?classes.paintGreen:classes.paintRed }> {`P ${value.amount}`} </Typography>
-                                    <Typography> {value.status} </Typography>
-                                </div>
-                                <ListItemSecondaryAction>
-                                    <IconButton>
-                                        <Edit />
-                                    </IconButton>
-                                </ListItemSecondaryAction>
-                            </ListItem>
-                            <Divider />
-                        </div>
-                    )
+                    return <Transaction value={value} key={index} classes={classes}/>
                 })}
             </List>
         )
@@ -67,7 +39,7 @@ class Transactions extends Component{
 
 function mapStateToProps(state, ownProps){
     return {
-        transactions: state.transactions,
+        transactions: state.transactions.lists.entries,
         classes: ownProps.classes,
     }
 }
